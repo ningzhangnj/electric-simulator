@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.ericsson.wrbs.viewer.feature"
+      label="Wrbs Viewer Feature"
+      version="0.0.1.qualifier"
+      provider-name="ENC WEA Team">
+
+   <description url="https://eforge.ericsson.se/sf/projects/wea_wcdma_extension_adapter_solu/">
+      WRBS Viewer provide a GUI for testers to test more easily and friendly.
+   </description>
+
+   <copyright>
+      Copyright (c) 2013 Ericsson
+   </copyright>
+
+   <license>
+      Thi product is only allow used in Ericson internal.
+   </license>
+
+   <url>
+      <discovery label="Wrbs viewer Plugin project page" url="https://eforge.ericsson.se/sf/projects/wea_wcdma_extension_adapter_solu/"/>
+   </url>
+
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.gef"/>
+      <import plugin="org.eclipse.ui.console"/>
+      <import plugin="org.eclipse.core.filesystem"/>
+      <import plugin="org.eclipse.ui.ide"/>
+   </requires>
+
+   <plugin
+         id="com.ericsson.wrbs.viewer.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.1.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="com.ericsson.wrbs.viewer.deps"
+         download-size="0"
+         install-size="0"
+         version="0.0.1.qualifier"/>
+
+   <plugin
+         id="com.ericsson.wrbs.viewer.branding"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+</feature>

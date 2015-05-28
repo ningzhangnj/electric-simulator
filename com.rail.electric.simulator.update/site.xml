@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description url="https://eforge.ericsson.se/sf/projects/wea_wcdma_extension_adapter_solu/">
+     WRBS Viewer provide a GUI for testers to test more easily and friendly.
+   </description>
+   
+   <feature url="features/com.ericsson.wrbs.viewer.feature_0.0.1.qualifier.jar" id="com.ericsson.wrbs.viewer.feature" version="0.0.1.qualifier">
+      <category name="Wrbs_viewer"/>
+   </feature>
+   <category-def name="Wrbs_viewer" label="Wrbs_viewer">
+      <description>
+         WRBS Viewer provide a GUI for testers to test more easily and friendly.
+      </description>
+   </category-def>
+</site>

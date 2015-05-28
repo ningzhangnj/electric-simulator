@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  
+   <extension
+         id="wv"
+         name="WrbsViewer"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.eclipse.ui.ide.workbench"
+            name="WRBS VIEWER">
+         <property
+               name="appName"
+               value="WRBS VIEWER">
+         </property>
+         <property
+               name="windowImages"
+               value="images/ccw-16x16.png,images/ccw-32x32.png,images/ccw-48x48.png,images/ccw-64x64.png,images/ccw-128x128.png">
+         </property>
+         <property
+               name="aboutText"
+               value="WRBS VIEWER&#x0A;&#x0A;Version:  0.0.1&#x0A;&#x0A;This product is a component of WRBS test framework.&#x0A;It provides graphic user interface to run Wrbs related tests.">
+         </property>
+         <property
+               name="startupForegroundColor"
+               value="1C0F3C">
+         </property>
+         <property
+               name="startupMessageRect"
+               value="7,312,540,20">
+         </property>
+         <property
+               name="startupProgressRect"
+               value="5,335,540,15">
+         </property>
+         <property
+               name="preferenceCustomization"
+               value="plugin_customization.ini">
+         </property>
+         <property
+               name="aboutImage"
+               value="images/ccw-250x250.png">
+         </property>
+         <property
+            name="introTitle"
+            value="WRBS VIEWER"/>
+          <property
+                name="introBrandingImage"
+                value="product:images/ccw-64x64.png"/>
+          <property
+                name="introBrandingImageText"
+                value="WRBS VIEWER, the tool based on Eclipse"/>
+                
+      </product>
+   </extension>
+   
+</plugin>

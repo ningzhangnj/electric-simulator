@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.5"?>
+
+<product name="WRBS VIEWER" uid="com.ericsson.wrbs.viewer.branding.wv" id="com.ericsson.wrbs.viewer.branding.wv" application="org.eclipse.ui.ide.workbench" version="0.0.1.qualifier" useFeatures="true" includeLaunchers="true">
+
+   <aboutInfo>
+      <image path="/com.ericsson.wrbs.viewer.branding/images/ccw-250x250.png"/>
+      <text>
+         WRBS VIEWER
+
+Version:  0.0.1
+
+This product is a component of WRBS test framework.
+It provides graphic user interface to run Wrbs related tests.
+      </text>
+   </aboutInfo>
+
+   <configIni use="default">
+   </configIni>
+
+   <launcherArgs>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
+   </launcherArgs>
+
+   <windowImages i16="/com.ericsson.wrbs.viewer.branding/images/ccw-16x16.png" i32="/com.ericsson.wrbs.viewer.branding/images/ccw-32x32.png" i48="/com.ericsson.wrbs.viewer.branding/images/ccw-48x48.png" i64="/com.ericsson.wrbs.viewer.branding/images/ccw-64x64.png" i128="/com.ericsson.wrbs.viewer.branding/images/ccw-128x128.png"/>
+
+   <splash
+      location="com.ericsson.wrbs.viewer.branding"
+      startupProgressRect="5,335,540,15"
+      startupMessageRect="7,312,540,20"
+      startupForegroundColor="1C0F3C" />
+   <launcher name="WrbsViewer">
+      <linux icon="images/ccw-48x48.xpm"/>
+      <macosx icon="images/ccw.icns"/>
+      <solaris/>
+      <win useIco="true">
+         <ico path="/com.ericsson.wrbs.viewer.rcp/images/ccw.ico"/>
+         <bmp/>
+      </win>
+   </launcher>
+
+
+   <vm>
+      <windows include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7</windows>
+   </vm>
+
+   <license>
+        <text>
+   This product is only allow used in Ericsson internal.
+         </text>
+   </license>
+
+   <plugins>
+      <plugin id="com.ericsson.wrbs.viewer.branding"/>
+      <plugin id="com.ericsson.wrbs.viewer.deps"/>
+      <plugin id="com.ericsson.wrbs.viewer.ui"/>
+   </plugins>
+
+   <features>
+      <feature id="com.ericsson.wrbs.viewer.feature"/>
+      <feature id="org.eclipse.rcp"/>
+      <feature id="org.eclipse.equinox.p2.user.ui"/>
+      <feature id="org.eclipse.emf.ecore"/>
+      <feature id="org.eclipse.e4.rcp"/>
+      <feature id="org.eclipse.equinox.p2.core.feature"/>
+      <feature id="org.eclipse.emf.common"/>
+      <feature id="org.eclipse.equinox.p2.rcp.feature"/>
+      <feature id="org.eclipse.equinox.p2.extras.feature"/>
+      <feature id="org.eclipse.platform"/>
+      <feature id="org.eclipse.help"/>
+      <feature id="org.eclipse.pde"/>
+      <feature id="org.eclipse.jdt"/>
+      <feature id="org.eclipse.gef"/>
+      <feature id="org.eclipse.draw2d"/>
+   </features>
+
+   <configurations>
+      <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="4" />
+      <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.ds" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
+   </configurations>
+
+</product>

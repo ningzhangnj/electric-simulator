@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="4.0"?>
+<plugin>
+
+     <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            default="true"
+            name="%Simulator_graphical_editor_name"
+            extensions="simulator"
+            icon="simulator.gif"
+            class="com.rail.electric.simulator.editors.SimulatorEditor"
+            contributorClass="com.rail.electric.simulator.actions.SimulatorActionBarContributor"
+            id="Simulator Graphical Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="com.rail.electric.simulator"
+            name="%Simulator_wizard_category_name">
+      </category>
+      <wizard
+            name="%Simulator_wizard_name"
+            icon="simulator.gif"
+            category="com.rail.electric.simulator"
+            class="com.rail.electric.simulator.wizard.SimulatorCreationWizard"
+            id="com.rail.electric.simulator.wizard.new.file">
+         <description>
+            %Simulator_wizard_description
+         </description>
+         <selection
+               class="org.eclipse.core.resources.IResource">
+         </selection>
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            nameFilter="*.simulator"
+            id="com.rail.electric.simulator.popupMenu">
+         <action
+               label="Print"
+               class="com.rail.electric.simulator.actions.SimulatorPrintAction"
+               menubarPath="additions"
+               enablesFor="1"
+               id="com.rail.electric.simulator.print">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>

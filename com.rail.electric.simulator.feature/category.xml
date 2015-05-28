@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.ericsson.wrbs.viewer.feature-0.0.1-SNAPSHOT.jar" id="com.ericsson.wrbs.viewer.feature" version="0.0.1-SNAPSHOT">
+      <category name="Wrbs_viewer"/>
+   </feature>
+   <category-def name="Wrbs_viewer" label="Wrbs_viewer"/>
+</site>

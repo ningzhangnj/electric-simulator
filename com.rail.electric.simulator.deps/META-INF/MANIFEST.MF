@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Electric simulaotr dependencies
+Bundle-SymbolicName: com.rail.electric.simulator.deps
+Bundle-Version: 0.0.1.qualifier
+Bundle-Vendor: Rail
+Bundle-ClassPath: . 
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

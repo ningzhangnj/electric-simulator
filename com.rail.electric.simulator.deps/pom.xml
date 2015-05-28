@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.rail.electric.simulator</groupId>
+		<artifactId>electric_simulator_parent</artifactId>
+	    <version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>com.rail.electric.simulator.deps</artifactId>
+	<packaging>eclipse-plugin</packaging>
+
+	<dependencies>
+        <dependency>
+		  <groupId>org.slf4j</groupId>
+		  <artifactId>slf4j-log4j12</artifactId>
+		  <version>1.6.6</version>
+		</dependency> 
+		<dependency>
+		  <groupId>log4j</groupId>
+		  <artifactId>log4j</artifactId>
+		  <version>1.2.17</version>		  
+		</dependency>      
+    </dependencies>
+    
+  <build>
+        <plugins>
+            <plugin> 
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.7</version>
+				<executions>
+				    <execution>
+						<id>import-dependencies</id>
+						<phase>initialize</phase>
+						<goals>
+						  <goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<stripVersion>true</stripVersion>
+							<outputDirectory>${project.basedir}/lib</outputDirectory>
+                            <excludeGroupIds>p2.eclipse-plugin</excludeGroupIds>                            				
+						</configuration>
+				    </execution>
+				</executions>
+			</plugin> 
+			<plugin>
+	          <groupId>org.apache.maven.plugins</groupId>
+	          <artifactId>maven-clean-plugin</artifactId>
+	          <version>2.5</version>
+	          <executions>
+	            <execution>
+	              <id>clean-dependencies</id>
+	              <phase>clean</phase>
+	              <goals>
+	                <goal>clean</goal>
+	              </goals>
+	              <configuration>
+	                <filesets>
+	                  <fileset>
+	                    <directory>${project.basedir}/lib</directory>
+	                    <includes>
+	                      <include>**/*</include>
+	                    </includes>
+	                  </fileset>                  
+	                </filesets>
+	              </configuration>
+	            </execution>
+	          </executions>
+            </plugin>
+	   </plugins>
+    </build>
+</project>

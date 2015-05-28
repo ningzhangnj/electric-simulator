@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: WRBS Viewer Branding
+Bundle-SymbolicName: com.ericsson.wrbs.viewer.branding;singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Bundle-Activator: com.rail.electric.simulator.branding.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.debug.ui,
+ org.eclipse.equinox.p2.ui,
+ org.eclipse.equinox.p2.ui.sdk,
+ org.eclipse.equinox.p2.ui.sdk.scheduler,
+ org.eclipse.equinox.ds,
+ org.eclipse.ui.net
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-Vendor: ENC WRBS FW team
+Bundle-ActivationPolicy: lazy
