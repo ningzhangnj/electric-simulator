@@ -1,4 +1,4 @@
-package com.rail.electric.simulator.parts;
+package com.rail.electric.simulator.policies;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionAnchor;
@@ -16,6 +16,7 @@ import com.rail.electric.simulator.figures.NodeFigure;
 import com.rail.electric.simulator.model.SimulatorSubpart;
 import com.rail.electric.simulator.model.Wire;
 import com.rail.electric.simulator.model.commands.ConnectionCommand;
+import com.rail.electric.simulator.parts.SimulatorEditPart;
 
 public class SimulatorNodeEditPolicy extends
 		org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy {

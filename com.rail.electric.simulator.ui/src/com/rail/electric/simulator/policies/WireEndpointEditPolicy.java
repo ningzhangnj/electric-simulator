@@ -18,7 +18,7 @@ public class WireEndpointEditPolicy extends
 
 	protected void removeSelectionHandles() {
 		super.removeSelectionHandles();
-		getConnectionFigure().setLineWidth(0);
+		getConnectionFigure().setLineWidth(5);
 	}
 
 }

@@ -7,20 +7,23 @@ import org.eclipse.swt.graphics.Image;
 
 import com.rail.electric.simulator.SimulatorMessages;
 
-public class SimulatorLabel extends SimulatorSubpart {
+public class SimulatorResist extends SimulatorSubpart {
 
+	public static String TERMINAL_IN = "IN";
+	public static String TERMINAL_OUT = "OUT";
+			
 	private static final int DEFAULT_WIDTH = 50;
 
 	static final long serialVersionUID = 1;
 
 	private String text = SimulatorMessages.SimulatorPlugin_Tool_CreationTool_LogicLabel;
 
-	private static Image LOGIC_LABEL_ICON = createImage(LED.class,
-			"icons/label16.gif"); //$NON-NLS-1$
+	private static Image LOGIC_RESIST_ICON = createImage(LED.class,
+			"icons/resist16.gif"); //$NON-NLS-1$
 
 	private static int count;
 
-	public SimulatorLabel() {
+	public SimulatorResist() {
 		super();
 		size.width = DEFAULT_WIDTH;
 	}
@@ -30,7 +33,7 @@ public class SimulatorLabel extends SimulatorSubpart {
 	}
 
 	public Image getIconImage() {
-		return LOGIC_LABEL_ICON;
+		return LOGIC_RESIST_ICON;
 	}
 
 	protected String getNewID() {

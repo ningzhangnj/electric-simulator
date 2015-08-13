@@ -229,5 +229,7 @@ abstract public class SimulatorSubpart extends SimulatorElement {
 	public void setVerticalGuide(SimulatorGuide vGuide) {
 		verticalGuide = vGuide;
 	}
+	
+	abstract public void changeStatus();
 
 }

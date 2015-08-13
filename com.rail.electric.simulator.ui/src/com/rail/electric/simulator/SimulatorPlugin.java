@@ -8,18 +8,14 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.ConnectionCreationToolEntry;
-import org.eclipse.gef.palette.MarqueeToolEntry;
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
-import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.gef.palette.PaletteGroup;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.PaletteSeparator;
-import org.eclipse.gef.palette.PaletteStack;
 import org.eclipse.gef.palette.PanningSelectionToolEntry;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gef.requests.SimpleFactory;
-import org.eclipse.gef.tools.MarqueeSelectionTool;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
@@ -28,8 +24,16 @@ import org.osgi.framework.BundleContext;
 
 import com.rail.electric.simulator.figures.LEDFigure;
 import com.rail.electric.simulator.model.LED;
+import com.rail.electric.simulator.model.SimulatorComplexCircuit;
 import com.rail.electric.simulator.model.SimulatorFlowContainer;
+import com.rail.electric.simulator.model.SimulatorGround;
+import com.rail.electric.simulator.model.SimulatorGroundWithResist;
 import com.rail.electric.simulator.model.SimulatorLabel;
+import com.rail.electric.simulator.model.SimulatorMainSwitch;
+import com.rail.electric.simulator.model.SimulatorResist;
+import com.rail.electric.simulator.model.SimulatorSwitch;
+import com.rail.electric.simulator.model.SimulatorThreePhaseTransformer;
+import com.rail.electric.simulator.model.SimulatorTwoPhaseTransformer;
 import com.rail.electric.simulator.tools.SimulatorCreationTool;
 
 public class SimulatorPlugin extends AbstractUIPlugin {
@@ -131,6 +135,102 @@ public class SimulatorPlugin extends AbstractUIPlugin {
 		combined.setToolClass(SimulatorCreationTool.class);
 		entries.add(combined);
 
+		combined = new CombinedTemplateCreationEntry(
+				SimulatorMessages.SimulatorPlugin_Tool_CreationTool_Label_Label,
+				SimulatorMessages.SimulatorPlugin_Tool_CreationTool_Label_Description,
+				new SimpleFactory(SimulatorResist.class),
+				ImageDescriptor.createFromFile(LED.class,
+						"icons/resist16.gif"), //$NON-NLS-1$
+				ImageDescriptor.createFromFile(LED.class,
+						"icons/resist24.gif")//$NON-NLS-1$
+		);
+		combined.setToolClass(SimulatorCreationTool.class);
+		entries.add(combined);	
+		
+		combined = new CombinedTemplateCreationEntry(
+				SimulatorMessages.SimulatorPlugin_Tool_CreationTool_Label_Label,
+				SimulatorMessages.SimulatorPlugin_Tool_CreationTool_Label_Description,
+				new SimpleFactory(SimulatorGround.class),
+				ImageDescriptor.createFromFile(LED.class,
+						"icons/ground_on_18X24.png"), //$NON-NLS-1$
+				ImageDescriptor.createFromFile(LED.class,
+						"icons/ground_on_48X64.png")//$NON-NLS-1$
+		);
+		combined.setToolClass(SimulatorCreationTool.class);
+		entries.add(combined);	
+		
+		combined = new CombinedTemplateCreationEntry(
+				SimulatorMessages.SimulatorPlugin_Tool_CreationTool_Label_Label,
+				SimulatorMessages.SimulatorPlugin_Tool_CreationTool_Label_Description,
+				new SimpleFactory(SimulatorComplexCircuit.class),
+				ImageDescriptor.createFromFile(LED.class,
+						"icons/comp_on_24X24.png"), //$NON-NLS-1$
+				ImageDescriptor.createFromFile(LED.class,
+						"icons/comp_on_64X64.png")//$NON-NLS-1$
+		);
+		combined.setToolClass(SimulatorCreationTool.class);
+		entries.add(combined);	
+		
+		combined = new CombinedTemplateCreationEntry(
+				SimulatorMessages.SimulatorPlugin_Tool_CreationTool_Label_Label,
+				SimulatorMessages.SimulatorPlugin_Tool_CreationTool_Label_Description,
+				new SimpleFactory(SimulatorTwoPhaseTransformer.class),
+				ImageDescriptor.createFromFile(LED.class,
+						"icons/double_trans_24X24.png"), //$NON-NLS-1$
+				ImageDescriptor.createFromFile(LED.class,
+						"icons/double_trans_64X64.png")//$NON-NLS-1$
+		);
+		combined.setToolClass(SimulatorCreationTool.class);
+		entries.add(combined);	
+		
+		combined = new CombinedTemplateCreationEntry(
+				SimulatorMessages.SimulatorPlugin_Tool_CreationTool_Label_Label,
+				SimulatorMessages.SimulatorPlugin_Tool_CreationTool_Label_Description,
+				new SimpleFactory(SimulatorThreePhaseTransformer.class),
+				ImageDescriptor.createFromFile(LED.class,
+						"icons/trip_trans_on_13X24.png"), //$NON-NLS-1$
+				ImageDescriptor.createFromFile(LED.class,
+						"icons/trip_trans_on_40X72.png")//$NON-NLS-1$
+		);
+		combined.setToolClass(SimulatorCreationTool.class);
+		entries.add(combined);	
+		
+		combined = new CombinedTemplateCreationEntry(
+				SimulatorMessages.SimulatorPlugin_Tool_CreationTool_Label_Label,
+				SimulatorMessages.SimulatorPlugin_Tool_CreationTool_Label_Description,
+				new SimpleFactory(SimulatorGroundWithResist.class),
+				ImageDescriptor.createFromFile(LED.class,
+						"icons/ground_resist_12X24.png"), //$NON-NLS-1$
+				ImageDescriptor.createFromFile(LED.class,
+						"icons/ground_resist_32X64.png")//$NON-NLS-1$
+		);
+		combined.setToolClass(SimulatorCreationTool.class);
+		entries.add(combined);	
+		
+		combined = new CombinedTemplateCreationEntry(
+				SimulatorMessages.SimulatorPlugin_Tool_CreationTool_Label_Label,
+				SimulatorMessages.SimulatorPlugin_Tool_CreationTool_Label_Description,
+				new SimpleFactory(SimulatorSwitch.class),
+				ImageDescriptor.createFromFile(LED.class,
+						"icons/switch_off_24X24.png"), //$NON-NLS-1$
+				ImageDescriptor.createFromFile(LED.class,
+						"icons/switch_off_48X48.png")//$NON-NLS-1$
+		);
+		combined.setToolClass(SimulatorCreationTool.class);
+		entries.add(combined);	
+		
+		combined = new CombinedTemplateCreationEntry(
+				SimulatorMessages.SimulatorPlugin_Tool_CreationTool_Label_Label,
+				SimulatorMessages.SimulatorPlugin_Tool_CreationTool_Label_Description,
+				new SimpleFactory(SimulatorMainSwitch.class),
+				ImageDescriptor.createFromFile(LED.class,
+						"icons/main_switch_off_24X24.png"), //$NON-NLS-1$
+				ImageDescriptor.createFromFile(LED.class,
+						"icons/main_switch_off_48X48.png")//$NON-NLS-1$
+		);
+		combined.setToolClass(SimulatorCreationTool.class);
+		entries.add(combined);
+		
 		entries.add(new PaletteSeparator());
 
 		combined = new CombinedTemplateCreationEntry(
@@ -143,7 +243,9 @@ public class SimulatorPlugin extends AbstractUIPlugin {
 						"icons/label24.gif")//$NON-NLS-1$
 		);
 		combined.setToolClass(SimulatorCreationTool.class);
-		entries.add(combined);		
+		entries.add(combined);	
+		
+		
 
 		drawer.addAll(entries);
 		return drawer;
@@ -159,7 +261,7 @@ public class SimulatorPlugin extends AbstractUIPlugin {
 		entries.add(tool);
 		root.setDefaultEntry(tool);
 
-		PaletteStack marqueeStack = new PaletteStack(
+		/*PaletteStack marqueeStack = new PaletteStack(
 				SimulatorMessages.Marquee_Stack, "", null); //$NON-NLS-1$
 
 		// NODES CONTAINED (default)
@@ -203,7 +305,7 @@ public class SimulatorPlugin extends AbstractUIPlugin {
 
 		marqueeStack
 				.setUserModificationPermission(PaletteEntry.PERMISSION_NO_MODIFICATION);
-		entries.add(marqueeStack);
+		entries.add(marqueeStack);*/
 
 		tool = new ConnectionCreationToolEntry(
 				SimulatorMessages.SimulatorPlugin_Tool_ConnectionCreationTool_ConnectionCreationTool_Label,

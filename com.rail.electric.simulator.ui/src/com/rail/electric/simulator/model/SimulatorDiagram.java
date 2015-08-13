@@ -193,4 +193,10 @@ public class SimulatorDiagram extends SimulatorSubpart {
 		}
 	}
 
+	@Override
+	public void changeStatus() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

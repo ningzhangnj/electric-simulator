@@ -7,20 +7,23 @@ import org.eclipse.swt.graphics.Image;
 
 import com.rail.electric.simulator.SimulatorMessages;
 
-public class SimulatorLabel extends SimulatorSubpart {
+public class SimulatorThreePhaseTransformer extends SimulatorSubpart {
 
+	public static String TERMINAL_IN = "IN";
+	public static String TERMINAL_OUT = "OUT";
+			
 	private static final int DEFAULT_WIDTH = 50;
 
 	static final long serialVersionUID = 1;
 
 	private String text = SimulatorMessages.SimulatorPlugin_Tool_CreationTool_LogicLabel;
 
-	private static Image LOGIC_LABEL_ICON = createImage(LED.class,
-			"icons/label16.gif"); //$NON-NLS-1$
+	private static Image SIMULATOR_THREE_PHASE_TRANSFORMER_ICON = createImage(LED.class,
+			"icons/trip_trans_on_13X24.png"); //$NON-NLS-1$
 
 	private static int count;
 
-	public SimulatorLabel() {
+	public SimulatorThreePhaseTransformer() {
 		super();
 		size.width = DEFAULT_WIDTH;
 	}
@@ -30,7 +33,7 @@ public class SimulatorLabel extends SimulatorSubpart {
 	}
 
 	public Image getIconImage() {
-		return LOGIC_LABEL_ICON;
+		return SIMULATOR_THREE_PHASE_TRANSFORMER_ICON;
 	}
 
 	protected String getNewID() {
@@ -65,8 +68,7 @@ public class SimulatorLabel extends SimulatorSubpart {
 
 	@Override
 	public void changeStatus() {
-		// TODO Auto-generated method stub
-		
+		firePropertyChange("changeStatus", null, null);		
 	}
 
 }

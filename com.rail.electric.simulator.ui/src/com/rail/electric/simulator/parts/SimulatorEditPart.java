@@ -21,6 +21,7 @@ import com.rail.electric.simulator.figures.NodeFigure;
 import com.rail.electric.simulator.model.SimulatorSubpart;
 import com.rail.electric.simulator.model.Wire;
 import com.rail.electric.simulator.policies.SimulatorElementEditPolicy;
+import com.rail.electric.simulator.policies.SimulatorNodeEditPolicy;
 
 /**
  * Provides support for
@@ -149,7 +150,7 @@ abstract public class SimulatorEditPart extends
 	 * 
 	 * @return The name of the ConnectionAnchor as a String.
 	 */
-	final protected String mapConnectionAnchorToTerminal(ConnectionAnchor c) {
+	final public String mapConnectionAnchorToTerminal(ConnectionAnchor c) {
 		return getNodeFigure().getConnectionAnchorName(c);
 	}
 

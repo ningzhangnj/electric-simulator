@@ -8,6 +8,7 @@ import java.util.List;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.ManhattanConnectionRouter;
+import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.draw2d.RelativeBendpoint;
 import org.eclipse.gef.AccessibleEditPart;
 import org.eclipse.gef.EditPolicy;
@@ -33,8 +34,8 @@ public class WireEditPart extends AbstractConnectionEditPart implements
 
 	AccessibleEditPart acc;
 
-	public static final Color alive = new Color(Display.getDefault(), 30, 144,
-			255), dead = new Color(Display.getDefault(), 30, 30, 30);
+	public static final Color alive = new Color(Display.getDefault(), 255,0,0/*30, 144,
+			255*/), dead = new Color(Display.getDefault(), 0,0,255/*30, 30, 30*/);
 
 	public void activate() {
 		super.activate();
@@ -69,7 +70,7 @@ public class WireEditPart extends AbstractConnectionEditPart implements
 	 * @return The created Figure.
 	 */
 	protected IFigure createFigure() {
-		Connection connx = FigureFactory.createNewBendableWire(getWire());
+		Connection connx = FigureFactory.createNewBendableWire(getWire());		
 		return connx;
 	}
 
@@ -147,7 +148,7 @@ public class WireEditPart extends AbstractConnectionEditPart implements
 			rbp.setWeight((i + 1) / ((float) modelConstraint.size() + 1));
 			figureConstraint.add(rbp);
 		}
-		getConnectionFigure().setRoutingConstraint(figureConstraint);
+		getConnectionFigure().setRoutingConstraint(figureConstraint);		
 	}
 
 	private void refreshBendpointEditPolicy() {
@@ -170,5 +171,13 @@ public class WireEditPart extends AbstractConnectionEditPart implements
 		else
 			getWireFigure().setForegroundColor(dead);
 	}
+	
+	/*protected void refreshTargetAnchor() {
+		super.refreshTargetAnchor();
+		int width = 5;
+		if(getWireFigure() instanceof PolylineConnection){
+			((PolylineConnection)getWireFigure()).setLineWidth(width);
+		}
+	}*/
 
 }

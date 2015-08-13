@@ -828,7 +828,7 @@ public class SimulatorEditor extends GraphicalEditorWithFlyoutPalette {
 		try {
 			InputStream is = file.getContents(false);
 			ObjectInputStream ois = new ObjectInputStream(is);
-			setLogicDiagram((SimulatorDiagram) ois.readObject());
+			setSimulatorDiagram((SimulatorDiagram) ois.readObject());
 			ois.close();
 		} catch (Exception e) {
 			// This is just an example. All exceptions caught here.
@@ -846,7 +846,7 @@ public class SimulatorEditor extends GraphicalEditorWithFlyoutPalette {
 		}
 	}
 
-	public void setLogicDiagram(SimulatorDiagram diagram) {
+	public void setSimulatorDiagram(SimulatorDiagram diagram) {
 		simulatorDiagram = diagram;
 	}
 

@@ -7,20 +7,27 @@ import org.eclipse.swt.graphics.Image;
 
 import com.rail.electric.simulator.SimulatorMessages;
 
-public class SimulatorLabel extends SimulatorSubpart {
+public class SimulatorTwoPhaseTransformer extends SimulatorSubpart {
 
+	public static String TERMINAL_IN_1 = "IN_1";
+	public static String TERMINAL_IN_2 = "IN_2";
+	public static String TERMINAL_IN_3 = "IN_3";
+	public static String TERMINAL_OUT_1 = "OUT_1";
+	public static String TERMINAL_OUT_2 = "OUT_2";
+	public static String TERMINAL_OUT_3 = "OUT_3";
+			
 	private static final int DEFAULT_WIDTH = 50;
 
 	static final long serialVersionUID = 1;
 
 	private String text = SimulatorMessages.SimulatorPlugin_Tool_CreationTool_LogicLabel;
 
-	private static Image LOGIC_LABEL_ICON = createImage(LED.class,
-			"icons/label16.gif"); //$NON-NLS-1$
+	private static Image SIMULATOR_TWO_PHASE_TRANSFORMER_ICON = createImage(LED.class,
+			"icons/double_trans_24X24.png"); //$NON-NLS-1$
 
 	private static int count;
 
-	public SimulatorLabel() {
+	public SimulatorTwoPhaseTransformer() {
 		super();
 		size.width = DEFAULT_WIDTH;
 	}
@@ -30,7 +37,7 @@ public class SimulatorLabel extends SimulatorSubpart {
 	}
 
 	public Image getIconImage() {
-		return LOGIC_LABEL_ICON;
+		return SIMULATOR_TWO_PHASE_TRANSFORMER_ICON;
 	}
 
 	protected String getNewID() {
@@ -65,8 +72,7 @@ public class SimulatorLabel extends SimulatorSubpart {
 
 	@Override
 	public void changeStatus() {
-		// TODO Auto-generated method stub
-		
+		firePropertyChange("changeStatus", null, null);		
 	}
 
 }
