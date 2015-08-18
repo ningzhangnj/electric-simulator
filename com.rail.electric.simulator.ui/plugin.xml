@@ -49,5 +49,13 @@
          </action>
       </objectContribution>
    </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="com.rail.electric.simulator.Perspective"
+            icon="icons/simulator-16.png"
+            id="com.rail.electric.simulator.Perspective"
+            name="Simulator"/>
+   </extension>
 
 </plugin>

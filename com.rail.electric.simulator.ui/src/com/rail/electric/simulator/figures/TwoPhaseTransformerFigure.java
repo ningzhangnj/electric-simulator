@@ -9,15 +9,16 @@ import com.rail.electric.simulator.model.SimulatorTwoPhaseTransformer;
 
 
 public class TwoPhaseTransformerFigure extends NodeFigure {
-	public static final Image TWO_PHASE_TRANSFORMER = 
-			new Image(Display.getCurrent(),
-					SimulatorTwoPhaseTransformer.class.getResourceAsStream("icons/double_trans_64X64.png"));	
+	public static final Image SMALL_TWO_PHASE_TRANSFORMER = new Image(Display.getCurrent(),
+			TwoPhaseTransformerFigure.class.getResourceAsStream("icons/double_trans_24X24.png"));
+	public static final Image LARGE_TWO_PHASE_TRANSFORMER = new Image(Display.getCurrent(),
+			TwoPhaseTransformerFigure.class.getResourceAsStream("icons/double_trans_64X64.png"));	
 	
 	public TwoPhaseTransformerFigure() {
 		final ToolbarLayout layout = new ToolbarLayout();
 		setLayoutManager(layout);
 				
-		ImageFigure imageFigure = new ImageFigure(TWO_PHASE_TRANSFORMER);
+		ImageFigure imageFigure = new ImageFigure(LARGE_TWO_PHASE_TRANSFORMER);
 		imageFigure.setPreferredSize(25, 25);
 		add(imageFigure);
 				

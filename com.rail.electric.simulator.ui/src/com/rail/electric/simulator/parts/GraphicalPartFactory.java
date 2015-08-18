@@ -11,7 +11,6 @@ import com.rail.electric.simulator.model.SimulatorGround;
 import com.rail.electric.simulator.model.SimulatorGroundWithResist;
 import com.rail.electric.simulator.model.SimulatorLabel;
 import com.rail.electric.simulator.model.SimulatorMainSwitch;
-import com.rail.electric.simulator.model.SimulatorResist;
 import com.rail.electric.simulator.model.SimulatorSwitch;
 import com.rail.electric.simulator.model.SimulatorThreePhaseTransformer;
 import com.rail.electric.simulator.model.SimulatorTwoPhaseTransformer;
@@ -30,8 +29,6 @@ public class GraphicalPartFactory implements EditPartFactory {
 			child = new LEDEditPart();
 		else if (model instanceof SimulatorLabel)
 			child = new  SimulatorLabelEditPart();	
-		else if (model instanceof SimulatorResist)
-			child = new  SimulatorResistEditPart();	
 		else if (model instanceof SimulatorGround)
 			child = new  SimulatorGroundEditPart();	
 		else if (model instanceof SimulatorComplexCircuit)

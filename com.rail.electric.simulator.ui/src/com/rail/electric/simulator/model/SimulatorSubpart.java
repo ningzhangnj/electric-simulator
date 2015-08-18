@@ -95,7 +95,7 @@ abstract public class SimulatorSubpart extends SimulatorElement {
 	public String getID() {
 		return id;
 	}
-
+		
 	protected boolean getInput(String terminal) {
 		if (inputs.isEmpty()) {
 			return false;
@@ -184,7 +184,7 @@ abstract public class SimulatorSubpart extends SimulatorElement {
 	public void setID(String s) {
 		id = s;
 	}
-
+	
 	public void setLocation(Point p) {
 		if (location.equals(p))
 			return;

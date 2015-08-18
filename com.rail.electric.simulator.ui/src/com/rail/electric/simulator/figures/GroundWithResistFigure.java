@@ -9,16 +9,16 @@ import com.rail.electric.simulator.model.SimulatorGround;
 
 
 public class GroundWithResistFigure extends NodeFigure {
-	public static final Image GROUND_WITH_RESIST = 
-			new Image(Display.getCurrent(),
-					SimulatorGround.class.getResourceAsStream("icons/ground_resist_32X64.png"));	
+	public static final Image SMALL_GROUND_WITH_RESIST = new Image(Display.getCurrent(),			
+			GroundWithResistFigure.class.getResourceAsStream("icons/ground_resist_12X24.png"));	
+	public static final Image LARGE_GROUND_WITH_RESIST = new Image(Display.getCurrent(),			
+			GroundWithResistFigure.class.getResourceAsStream("icons/ground_resist_32X64.png"));	
 	
 	public GroundWithResistFigure() {
 		final ToolbarLayout layout = new ToolbarLayout();
 		setLayoutManager(layout);
 				
-		ImageFigure imageFigure = new ImageFigure(GROUND_WITH_RESIST);
-		imageFigure.setPreferredSize(25, 25);
+		ImageFigure imageFigure = new ImageFigure(LARGE_GROUND_WITH_RESIST);
 		add(imageFigure);
 				
 		FixedConnectionAnchor inputConnectionAnchor = new FixedConnectionAnchor(this);

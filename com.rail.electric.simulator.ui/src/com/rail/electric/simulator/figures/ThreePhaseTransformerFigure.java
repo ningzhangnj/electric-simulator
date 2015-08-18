@@ -9,19 +9,20 @@ import com.rail.electric.simulator.model.SimulatorGround;
 
 
 public class ThreePhaseTransformerFigure extends NodeFigure {
-	public static final Image THREE_PHASE_TRANSFORMER_ON = 
-			new Image(Display.getCurrent(),
-					SimulatorGround.class.getResourceAsStream("icons/trip_trans_on_40X72.png"));	
-	
-	public static final Image THREE_PHASE_TRANSFORMER_OFF = 
-			new Image(Display.getCurrent(),
-					SimulatorGround.class.getResourceAsStream("icons/trip_trans_off_40X72.png"));
+	public static final Image SMALL_THREE_PHASE_TRANSFORMER_ON = new Image(Display.getCurrent(),			
+			ThreePhaseTransformerFigure.class.getResourceAsStream("icons/trip_trans_on_20X36.png"));	
+	public static final Image LARGE_THREE_PHASE_TRANSFORMER_ON = new Image(Display.getCurrent(),			
+			ThreePhaseTransformerFigure.class.getResourceAsStream("icons/trip_trans_on_40X72.png"));	
+	public static final Image SMALL_THREE_PHASE_TRANSFORMER_OFF = new Image(Display.getCurrent(),
+			ThreePhaseTransformerFigure.class.getResourceAsStream("icons/trip_trans_off_20X36.png"));
+	public static final Image LARGE_THREE_PHASE_TRANSFORMER_OFF = new Image(Display.getCurrent(),
+			ThreePhaseTransformerFigure.class.getResourceAsStream("icons/trip_trans_off_40X72.png"));
 	
 	public ThreePhaseTransformerFigure() {
 		final ToolbarLayout layout = new ToolbarLayout();
 		setLayoutManager(layout);
 				
-		ImageFigure imageFigure = new ImageFigure(THREE_PHASE_TRANSFORMER_ON);
+		ImageFigure imageFigure = new ImageFigure(LARGE_THREE_PHASE_TRANSFORMER_ON);
 		imageFigure.setPreferredSize(25, 25);
 		add(imageFigure);
 				

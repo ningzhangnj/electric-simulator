@@ -9,18 +9,20 @@ import com.rail.electric.simulator.model.SimulatorComplexCircuit;
 
 
 public class ComplexCircuitFigure extends NodeFigure {
-	public static final Image COMPLEX_CIRCUIT = 
-			new Image(Display.getCurrent(),
-					SimulatorComplexCircuit.class.getResourceAsStream("icons/comp_on_64X64.png"));
+	public static final Image SMALL_COMPLEX_CIRCUIT_ON = new Image(Display.getCurrent(),			
+			ComplexCircuitFigure.class.getResourceAsStream("icons/comp_on_24X24.png"));	
+	public static final Image LARGE_COMPLEX_CIRCUIT_ON = new Image(Display.getCurrent(),			
+			ComplexCircuitFigure.class.getResourceAsStream("icons/comp_on_64X64.png"));
+	public static final Image SMALL_COMPLEX_CIRCUIT_OFF = new Image(Display.getCurrent(),			
+			ComplexCircuitFigure.class.getResourceAsStream("icons/comp_off_24X24.png"));	
+	public static final Image LARGE_COMPLEX_CIRCUIT_OFF = new Image(Display.getCurrent(),			
+			ComplexCircuitFigure.class.getResourceAsStream("icons/comp_off_64X64.png"));
 	
 	public ComplexCircuitFigure() {
 		final ToolbarLayout layout = new ToolbarLayout();
-		//final FlowLayout layout = new FlowLayout();
 		setLayoutManager(layout);
 				
-		ImageFigure imageFigure = new ImageFigure(COMPLEX_CIRCUIT);
-		imageFigure.setSize(64,64);
-		this.setPreferredSize(64, 64);
+		ImageFigure imageFigure = new ImageFigure(LARGE_COMPLEX_CIRCUIT_ON);
 		add(imageFigure);
 				
 		FixedConnectionAnchor inputConnectionAnchor = new FixedConnectionAnchor(this);

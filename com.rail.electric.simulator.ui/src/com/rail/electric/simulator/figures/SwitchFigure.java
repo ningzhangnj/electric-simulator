@@ -9,15 +9,18 @@ import com.rail.electric.simulator.model.SimulatorTwoPhaseTransformer;
 
 
 public class SwitchFigure extends NodeFigure {
-	public static final Image SWITCH = 
-			new Image(Display.getCurrent(),
-					SimulatorTwoPhaseTransformer.class.getResourceAsStream("icons/switch_off_48X48.png"));	
+	public static final Image SMALL_SWITCH_OFF = new Image(Display.getCurrent(),
+			SwitchFigure.class.getResourceAsStream("icons/switch_off_24X24.png"));
+	public static final Image LARGE_SWITCH_OFF = new Image(Display.getCurrent(),
+			SwitchFigure.class.getResourceAsStream("icons/switch_off_48X48.png"));	
+	public static final Image LARGE_SWITCH_ON = new Image(Display.getCurrent(),
+			SwitchFigure.class.getResourceAsStream("icons/switch_on_48X48.png"));
 	
 	public SwitchFigure() {
 		final ToolbarLayout layout = new ToolbarLayout();
 		setLayoutManager(layout);
 				
-		ImageFigure imageFigure = new ImageFigure(SWITCH);
+		ImageFigure imageFigure = new ImageFigure(LARGE_SWITCH_OFF);
 		imageFigure.setPreferredSize(25, 25);
 		add(imageFigure);
 				

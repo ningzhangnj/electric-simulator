@@ -12,12 +12,11 @@ public class SimulatorGround extends SimulatorSubpart {
 	public static String TERMINAL_IN = "IN";
 	public static String TERMINAL_OUT = "OUT";
 			
-	private static final int DEFAULT_WIDTH = 50;
+	private static final int DEFAULT_WIDTH = 48;
 
 	static final long serialVersionUID = 1;
 
-	private String text = SimulatorMessages.SimulatorPlugin_Tool_CreationTool_LogicLabel;
-
+	
 	private static Image SIMULATOR_GROUND_ICON = createImage(LED.class,
 			"icons/ground_on_18X24.png"); //$NON-NLS-1$
 
@@ -26,10 +25,6 @@ public class SimulatorGround extends SimulatorSubpart {
 	public SimulatorGround() {
 		super();
 		size.width = DEFAULT_WIDTH;
-	}
-
-	public String getLabelContents() {
-		return text;
 	}
 
 	public Image getIconImage() {
@@ -52,18 +47,6 @@ public class SimulatorGround extends SimulatorSubpart {
 	public void setSize(Dimension d) {
 		d.height = -1;
 		super.setSize(d);
-	}
-
-	public void setLabelContents(String s) {
-		text = s;
-		firePropertyChange("labelContents", null, text); //$NON-NLS-2$//$NON-NLS-1$
-	}
-
-	public String toString() {
-		return SimulatorMessages.SimulatorPlugin_Tool_CreationTool_LogicLabel
-				+ " #" + getID() + " " //$NON-NLS-1$ //$NON-NLS-2$
-				+ SimulatorMessages.PropertyDescriptor_Label_Text
-				+ "=" + getLabelContents(); //$NON-NLS-1$ 
 	}
 
 	@Override

@@ -9,13 +9,14 @@ import com.rail.electric.simulator.model.SimulatorGround;
 
 
 public class GroundFigure extends NodeFigure {
-	public static final Image GROUND_ON = 
-			new Image(Display.getCurrent(),
-					SimulatorGround.class.getResourceAsStream("icons/ground_on_48X64.png"));
-	
-	public static final Image GROUND_OFF = 
-			new Image(Display.getCurrent(),
-					SimulatorGround.class.getResourceAsStream("icons/ground_off_48X64.png"));
+	public static final Image SMALL_GROUND_ON = new Image(Display.getCurrent(),			
+			GroundFigure.class.getResourceAsStream("icons/ground_on_18X24.png"));
+	public static final Image LARGE_GROUND_ON = new Image(Display.getCurrent(),			
+			GroundFigure.class.getResourceAsStream("icons/ground_on_48X64.png"));	
+	public static final Image SMALL_GROUND_OFF= new Image(Display.getCurrent(),			
+			GroundFigure.class.getResourceAsStream("icons/ground_on_18X24.png"));
+	public static final Image LARGE_GROUND_OFF = new Image(Display.getCurrent(),			
+			GroundFigure.class.getResourceAsStream("icons/ground_off_48X64.png"));
 	
 	private boolean isOff = false;
 	
@@ -23,8 +24,7 @@ public class GroundFigure extends NodeFigure {
 		final ToolbarLayout layout = new ToolbarLayout();
 		setLayoutManager(layout);
 				
-		ImageFigure imageFigure = new ImageFigure(GROUND_ON);
-		imageFigure.setPreferredSize(25, 25);
+		ImageFigure imageFigure = new ImageFigure(LARGE_GROUND_ON);
 		add(imageFigure);
 				
 		FixedConnectionAnchor inputConnectionAnchor = new FixedConnectionAnchor(this);
@@ -43,9 +43,9 @@ public class GroundFigure extends NodeFigure {
 		isOff = !isOff;
 		ImageFigure imageFigure = null;
 		if (isOff) {
-			imageFigure = new ImageFigure(GROUND_OFF);
+			imageFigure = new ImageFigure(LARGE_GROUND_OFF);
 		} else {
-			imageFigure = new ImageFigure(GROUND_ON);
+			imageFigure = new ImageFigure(LARGE_GROUND_ON);
 		}
 		imageFigure.setPreferredSize(25, 25);
 		this.removeAll();

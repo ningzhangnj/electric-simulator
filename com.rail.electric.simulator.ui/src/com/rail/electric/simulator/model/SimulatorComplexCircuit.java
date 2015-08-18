@@ -12,7 +12,7 @@ public class SimulatorComplexCircuit extends SimulatorSubpart {
 	public static String TERMINAL_IN = "IN";
 	public static String TERMINAL_OUT = "OUT";
 			
-	private static final int DEFAULT_WIDTH = 50;
+	private static final int DEFAULT_WIDTH = 64;
 
 	static final long serialVersionUID = 1;
 

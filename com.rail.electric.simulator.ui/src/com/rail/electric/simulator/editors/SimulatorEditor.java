@@ -20,28 +20,20 @@ import org.eclipse.core.resources.IResourceDeltaVisitor;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.draw2d.ConnectionLayer;
 import org.eclipse.draw2d.FigureCanvas;
-import org.eclipse.draw2d.LightweightSystem;
-import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.Viewport;
 import org.eclipse.draw2d.ViewportAwareConnectionLayerClippingStrategy;
-import org.eclipse.draw2d.parts.ScrollableThumbnail;
-import org.eclipse.draw2d.parts.Thumbnail;
 import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.DefaultEditDomain;
-import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.KeyHandler;
 import org.eclipse.gef.KeyStroke;
 import org.eclipse.gef.LayerConstants;
 import org.eclipse.gef.MouseWheelHandler;
 import org.eclipse.gef.MouseWheelZoomHandler;
-import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.SnapToGeometry;
 import org.eclipse.gef.SnapToGrid;
 import org.eclipse.gef.dnd.TemplateTransferDragSourceListener;
@@ -66,34 +58,25 @@ import org.eclipse.gef.ui.actions.ZoomInAction;
 import org.eclipse.gef.ui.actions.ZoomOutAction;
 import org.eclipse.gef.ui.palette.PaletteViewer;
 import org.eclipse.gef.ui.palette.PaletteViewerProvider;
-import org.eclipse.gef.ui.parts.ContentOutlinePage;
 import org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette;
 import org.eclipse.gef.ui.parts.GraphicalViewerKeyHandler;
 import org.eclipse.gef.ui.parts.ScrollingGraphicalViewer;
-import org.eclipse.gef.ui.parts.TreeViewer;
 import org.eclipse.gef.ui.rulers.RulerComposite;
-import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.SafeRunnable;
 import org.eclipse.jface.util.TransferDropTargetListener;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.TextTransfer;
-import org.eclipse.swt.events.DisposeEvent;
-import org.eclipse.swt.events.DisposeListener;
-import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
@@ -105,8 +88,7 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.IPageSite;
-import org.eclipse.ui.part.PageBook;
-import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
+import org.eclipse.ui.views.properties.IPropertySheetPage;
 
 import com.rail.electric.simulator.SimulatorContextMenuProvider;
 import com.rail.electric.simulator.SimulatorMessages;
@@ -116,171 +98,13 @@ import com.rail.electric.simulator.model.SimulatorDiagram;
 import com.rail.electric.simulator.model.SimulatorRuler;
 import com.rail.electric.simulator.palette.SimulatorPaletteCustomizer;
 import com.rail.electric.simulator.parts.GraphicalPartFactory;
-import com.rail.electric.simulator.parts.TreePartFactory;
+import com.rail.electric.simulator.properties.SimulatorPropertySheetPage;
 import com.rail.electric.simulator.rulers.SimulatorRulerProvider;
 
 public class SimulatorEditor extends GraphicalEditorWithFlyoutPalette {
 
-	class OutlinePage extends ContentOutlinePage implements IAdaptable {
-
-		private PageBook pageBook;
-		private Control outline;
-		private Canvas overview;
-		private IAction showOutlineAction, showOverviewAction;
-		static final int ID_OUTLINE = 0;
-		static final int ID_OVERVIEW = 1;
-		private Thumbnail thumbnail;
-		private DisposeListener disposeListener;
-
-		public OutlinePage(EditPartViewer viewer) {
-			super(viewer);
-		}
-
-		public void init(IPageSite pageSite) {
-			super.init(pageSite);
-			ActionRegistry registry = getActionRegistry();
-			IActionBars bars = pageSite.getActionBars();
-			String id = ActionFactory.UNDO.getId();
-			bars.setGlobalActionHandler(id, registry.getAction(id));
-			id = ActionFactory.REDO.getId();
-			bars.setGlobalActionHandler(id, registry.getAction(id));
-			id = ActionFactory.DELETE.getId();
-			bars.setGlobalActionHandler(id, registry.getAction(id));			
-			bars.updateActionBars();
-		}
-
-		protected void configureOutlineViewer() {
-			getViewer().setEditDomain(getEditDomain());
-			getViewer().setEditPartFactory(new TreePartFactory());
-			ContextMenuProvider provider = new SimulatorContextMenuProvider(
-					getViewer(), getActionRegistry());
-			getViewer().setContextMenu(provider);
-			getSite().registerContextMenu(
-					"org.eclipse.gef.examples.logic.outline.contextmenu", //$NON-NLS-1$
-					provider, getSite().getSelectionProvider());
-			getViewer().setKeyHandler(getCommonKeyHandler());
-			getViewer()
-					.addDropTargetListener(
-							(TransferDropTargetListener) new TemplateTransferDropTargetListener(
-									getViewer()));
-			IToolBarManager tbm = getSite().getActionBars().getToolBarManager();
-			showOutlineAction = new Action() {
-				public void run() {
-					showPage(ID_OUTLINE);
-				}
-			};
-			showOutlineAction.setImageDescriptor(ImageDescriptor
-					.createFromFile(SimulatorPlugin.class, "icons/outline.gif")); //$NON-NLS-1$
-			showOutlineAction
-					.setToolTipText(SimulatorMessages.SimulatorEditor_outline_show_outline);
-			tbm.add(showOutlineAction);
-			showOverviewAction = new Action() {
-				public void run() {
-					showPage(ID_OVERVIEW);
-				}
-			};
-			showOverviewAction.setImageDescriptor(ImageDescriptor
-					.createFromFile(SimulatorPlugin.class, "icons/overview.gif")); //$NON-NLS-1$
-			showOverviewAction
-					.setToolTipText(SimulatorMessages.SimulatorEditor_outline_show_overview);
-			tbm.add(showOverviewAction);
-			showPage(ID_OUTLINE);
-		}
-
-		public void createControl(Composite parent) {
-			pageBook = new PageBook(parent, SWT.NONE);
-			outline = getViewer().createControl(pageBook);
-			overview = new Canvas(pageBook, SWT.NONE);
-			pageBook.showPage(outline);
-			configureOutlineViewer();
-			hookOutlineViewer();
-			initializeOutlineViewer();
-		}
-
-		public void dispose() {
-			unhookOutlineViewer();
-			if (thumbnail != null) {
-				thumbnail.deactivate();
-				thumbnail = null;
-			}
-			super.dispose();
-			SimulatorEditor.this.outlinePage = null;
-			outlinePage = null;
-		}
-
-		public Object getAdapter(Class type) {
-			if (type == ZoomManager.class)
-				return getGraphicalViewer().getProperty(
-						ZoomManager.class.toString());
-			return null;
-		}
-
-		public Control getControl() {
-			return pageBook;
-		}
-
-		protected void hookOutlineViewer() {
-			getSelectionSynchronizer().addViewer(getViewer());
-		}
-
-		protected void initializeOutlineViewer() {
-			setContents(getSimulatorDiagram());
-		}
-
-		protected void initializeOverview() {
-			LightweightSystem lws = new LightweightSystem(overview);
-			RootEditPart rep = getGraphicalViewer().getRootEditPart();
-			if (rep instanceof ScalableFreeformRootEditPart) {
-				ScalableFreeformRootEditPart root = (ScalableFreeformRootEditPart) rep;
-				thumbnail = new ScrollableThumbnail((Viewport) root.getFigure());
-				thumbnail.setBorder(new MarginBorder(3));
-				thumbnail.setSource(root
-						.getLayer(LayerConstants.PRINTABLE_LAYERS));
-				lws.setContents(thumbnail);
-				disposeListener = new DisposeListener() {
-					public void widgetDisposed(DisposeEvent e) {
-						if (thumbnail != null) {
-							thumbnail.deactivate();
-							thumbnail = null;
-						}
-					}
-				};
-				getEditor().addDisposeListener(disposeListener);
-			}
-		}
-
-		public void setContents(Object contents) {
-			getViewer().setContents(contents);
-		}
-
-		protected void showPage(int id) {
-			if (id == ID_OUTLINE) {
-				showOutlineAction.setChecked(true);
-				showOverviewAction.setChecked(false);
-				pageBook.showPage(outline);
-				if (thumbnail != null)
-					thumbnail.setVisible(false);
-			} else if (id == ID_OVERVIEW) {
-				if (thumbnail == null)
-					initializeOverview();
-				showOutlineAction.setChecked(false);
-				showOverviewAction.setChecked(true);
-				pageBook.showPage(overview);
-				thumbnail.setVisible(true);
-			}
-		}
-
-		protected void unhookOutlineViewer() {
-			getSelectionSynchronizer().removeViewer(getViewer());
-			if (disposeListener != null && getEditor() != null
-					&& !getEditor().isDisposed())
-				getEditor().removeDisposeListener(disposeListener);
-		}
-	}
-
 	private KeyHandler sharedKeyHandler;
 	private PaletteRoot root;
-	private OutlinePage outlinePage;
 	private boolean editorSaving = false;
 
 	// This class listens to changes to the file system in the workspace, and
@@ -555,9 +379,12 @@ public class SimulatorEditor extends GraphicalEditorWithFlyoutPalette {
 	}
 
 	public Object getAdapter(Class type) {
-		if (type == IContentOutlinePage.class) {
+		/*if (type == IContentOutlinePage.class) {
 			outlinePage = new OutlinePage(new TreeViewer());
 			return outlinePage;
+		}*/
+		if (type == IPropertySheetPage.class) {
+			return new SimulatorPropertySheetPage();
 		}
 		if (type == ZoomManager.class)
 			return getGraphicalViewer().getProperty(
@@ -591,7 +418,7 @@ public class SimulatorEditor extends GraphicalEditorWithFlyoutPalette {
 
 	protected PaletteRoot getPaletteRoot() {
 		if (root == null) {
-			root = SimulatorPlugin.createPalette();
+			root = SimulatorEditorPaletteFactory.createPalette();
 		}
 		return root;
 	}
@@ -840,9 +667,9 @@ public class SimulatorEditor extends GraphicalEditorWithFlyoutPalette {
 				getGraphicalViewer().setContents(getSimulatorDiagram());
 				loadProperties();
 			}
-			if (outlinePage != null) {
+			/*if (outlinePage != null) {
 				outlinePage.setContents(getSimulatorDiagram());
-			}
+			}*/
 		}
 	}
 

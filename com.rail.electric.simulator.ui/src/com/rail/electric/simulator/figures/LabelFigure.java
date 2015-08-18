@@ -5,13 +5,19 @@ import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.text.FlowPage;
 import org.eclipse.draw2d.text.ParagraphTextLayout;
 import org.eclipse.draw2d.text.TextFlow;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * A Figure with a bent corner and an embedded TextFlow within a FlowPage that
  * contains text.
  */
 public class LabelFigure extends BentCornerFigure {
-
+	public static final Image SMALL_LABEL = new Image(Display.getCurrent(),			
+			LabelFigure.class.getResourceAsStream("icons/label16.gif"));
+	public static final Image LARGE_LABEL = new Image(Display.getCurrent(),			
+			LabelFigure.class.getResourceAsStream("icons/label24.gif"));
+	
 	/** The inner TextFlow **/
 	private TextFlow textFlow;
 
