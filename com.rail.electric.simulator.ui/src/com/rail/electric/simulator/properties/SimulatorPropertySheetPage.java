@@ -3,8 +3,8 @@ package com.rail.electric.simulator.properties;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.ControlListener;
@@ -15,28 +15,43 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
-import org.eclipse.ui.forms.widgets.Section;
-import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.part.Page;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
+
+import com.rail.electric.simulator.parts.SimulatorDiagramEditPart;
+import com.rail.electric.simulator.parts.SimulatorEditPart;
 
 public class SimulatorPropertySheetPage extends Page implements
         IPropertySheetPage{
 	
-	private static final int DEFAULT_SECTION_WIDTH = 200;
+	private static final int DEFAULT_SECTION_WIDTH = 100;
 	private Composite composite;
-	private Label titleBar;
-	private Control titleSeparator;
 	private WidgetFactory widgetFactory;
     private ScrolledForm form;
 	
+    private List<IPropertySectionPart> sections = new ArrayList<IPropertySectionPart>();
+    
+        
 	@Override
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
-		// TODO Auto-generated method stub
-		
+		if (selection instanceof StructuredSelection ) {
+			sections.clear();
+			if (form != null && !form.isDisposed()) {
+				for (Control control : form.getBody().getChildren()) {
+			        control.dispose();
+			    }
+	        }
+			Object editPart = ((StructuredSelection)selection).getFirstElement();
+			if (editPart instanceof SimulatorEditPart) {
+				sections.addAll(((SimulatorEditPart)editPart).getPropertySections());
+				if (form != null && !form.isDisposed()) {
+		           createSectionControls(form.getBody());
+		           reflow();
+		        }
+			}
+		}
 	}
 
 	@Override
@@ -48,12 +63,6 @@ public class SimulatorPropertySheetPage extends Page implements
         layout.horizontalSpacing = 0;
         layout.verticalSpacing = 0;
         composite.setLayout(layout);
-
-        titleBar = new Label(composite, SWT.NONE);
-        titleBar.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-
-        titleSeparator = new Label(composite, SWT.SEPARATOR | SWT.HORIZONTAL);
-        titleSeparator.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
         this.widgetFactory = new WidgetFactory(composite.getDisplay());
 
@@ -68,13 +77,15 @@ public class SimulatorPropertySheetPage extends Page implements
                 }
             }
         });
-        final Composite formBody = form.getBody();
-        formBody.setLayout(layout);
-        widgetFactory.createText(formBody, "");
-        widgetFactory.createText(formBody, "");
+        GridLayout layout1 = new GridLayout();
+        layout1.numColumns = 2;
+        form.getBody().setLayout(layout1);
+        
+        createSectionControls(form.getBody());        
+        
         form.addControlListener(new ControlListener() {
             public void controlResized(ControlEvent e) {
-                relayout(form, formBody);
+                relayout(form, form.getBody());
             }
 
             public void controlMoved(ControlEvent e) {
@@ -84,7 +95,17 @@ public class SimulatorPropertySheetPage extends Page implements
         form.reflow(true);		
 	}
 	
-	 private void relayout(ScrolledForm form, Composite formBody) {
+	private void createSectionControls(final Composite formBody) {
+		for (IPropertySectionPart section:sections) {
+			createSectionControl(formBody, section);
+		}		
+	}
+	
+	private void createSectionControl(Composite parent, IPropertySectionPart rec) {
+		rec.createControl(parent);
+	}
+	
+	private void relayout(ScrolledForm form, Composite formBody) {
         Rectangle area = form.getClientArea();
         GridLayout layout = (GridLayout) formBody.getLayout();
         int newNumColumns = Math.max(1, area.width / DEFAULT_SECTION_WIDTH);
@@ -110,6 +131,12 @@ public class SimulatorPropertySheetPage extends Page implements
             composite.setFocus();
 	}
 
+	private void reflow() {
+        if (form != null && !form.isDisposed()) {
+            form.reflow(true);
+            form.getParent().layout();
+        }
+    }
    
 
 }

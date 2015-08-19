@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.views.properties.ComboBoxPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 
@@ -19,8 +18,6 @@ public class SimulatorDiagram extends SimulatorSubpart {
 	public static Integer ROUTER_MANHATTAN = new Integer(1);
 	public static Integer ROUTER_SHORTEST_PATH = new Integer(2);
 	private static int count;
-	private static Image LOGIC_ICON = createImage(SimulatorDiagram.class,
-			"icons/ledicon16.gif"); //$NON-NLS-1$
 
 	protected List children = new ArrayList();
 	protected SimulatorRuler leftRuler, topRuler;
@@ -63,10 +60,6 @@ public class SimulatorDiagram extends SimulatorSubpart {
 		if (connectionRouter == null)
 			connectionRouter = ROUTER_MANUAL;
 		return connectionRouter;
-	}
-
-	public Image getIconImage() {
-		return LOGIC_ICON;
 	}
 
 	public String getNewID() {
@@ -192,11 +185,5 @@ public class SimulatorDiagram extends SimulatorSubpart {
 			return super.getText(element);
 		}
 	}
-
-	@Override
-	public void changeStatus() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 }

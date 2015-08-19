@@ -15,9 +15,6 @@ public class SimulatorLabel extends SimulatorSubpart {
 
 	private String text = SimulatorMessages.SimulatorPlugin_Tool_CreationTool_LogicLabel;
 
-	private static Image LOGIC_LABEL_ICON = createImage(LED.class,
-			"icons/label16.gif"); //$NON-NLS-1$
-
 	private static int count;
 
 	public SimulatorLabel() {
@@ -27,10 +24,6 @@ public class SimulatorLabel extends SimulatorSubpart {
 
 	public String getLabelContents() {
 		return text;
-	}
-
-	public Image getIconImage() {
-		return LOGIC_LABEL_ICON;
 	}
 
 	protected String getNewID() {
@@ -62,11 +55,5 @@ public class SimulatorLabel extends SimulatorSubpart {
 				+ SimulatorMessages.PropertyDescriptor_Label_Text
 				+ "=" + getLabelContents(); //$NON-NLS-1$ 
 	}
-
-	@Override
-	public void changeStatus() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 }

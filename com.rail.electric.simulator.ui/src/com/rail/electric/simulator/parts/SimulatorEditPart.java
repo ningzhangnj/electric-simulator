@@ -2,6 +2,7 @@ package com.rail.electric.simulator.parts;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.ConnectionAnchor;
@@ -22,6 +23,8 @@ import com.rail.electric.simulator.model.SimulatorSubpart;
 import com.rail.electric.simulator.model.Wire;
 import com.rail.electric.simulator.policies.SimulatorElementEditPolicy;
 import com.rail.electric.simulator.policies.SimulatorNodeEditPolicy;
+import com.rail.electric.simulator.properties.IPropertySectionPart;
+import com.rail.electric.simulator.properties.IdPropertySectionPart;
 
 /**
  * Provides support for
@@ -70,7 +73,7 @@ abstract public class SimulatorEditPart extends
 	 * 
 	 * @return The model of this as a LogicSubPart.
 	 */
-	protected SimulatorSubpart getSimulatorSubpart() {
+	public SimulatorSubpart getSimulatorSubpart() {
 		return (SimulatorSubpart) getModel();
 	}
 
@@ -194,4 +197,9 @@ abstract public class SimulatorEditPart extends
 				getFigure(), r);
 	}
 
+	public List<IPropertySectionPart> getPropertySections() {
+		List<IPropertySectionPart> sections = new ArrayList<IPropertySectionPart>();
+		sections.add(new IdPropertySectionPart(this));
+		return sections;
+	}
 }

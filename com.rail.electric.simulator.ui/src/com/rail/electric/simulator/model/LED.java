@@ -150,10 +150,4 @@ public class LED extends SimulatorSubpart {
 		setOutput(TERMINAL_4_OUT, bits[3]);
 	}
 
-	@Override
-	public void changeStatus() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

@@ -12,14 +12,11 @@ public class SimulatorThreePhaseTransformer extends SimulatorSubpart {
 	public static String TERMINAL_IN = "IN";
 	public static String TERMINAL_OUT = "OUT";
 			
-	private static final int DEFAULT_WIDTH = 50;
+	private static final int DEFAULT_WIDTH = 40;
 
 	static final long serialVersionUID = 1;
 
 	private String text = SimulatorMessages.SimulatorPlugin_Tool_CreationTool_LogicLabel;
-
-	private static Image SIMULATOR_THREE_PHASE_TRANSFORMER_ICON = createImage(LED.class,
-			"icons/trip_trans_on_13X24.png"); //$NON-NLS-1$
 
 	private static int count;
 
@@ -30,10 +27,6 @@ public class SimulatorThreePhaseTransformer extends SimulatorSubpart {
 
 	public String getLabelContents() {
 		return text;
-	}
-
-	public Image getIconImage() {
-		return SIMULATOR_THREE_PHASE_TRANSFORMER_ICON;
 	}
 
 	protected String getNewID() {
@@ -64,11 +57,6 @@ public class SimulatorThreePhaseTransformer extends SimulatorSubpart {
 				+ " #" + getID() + " " //$NON-NLS-1$ //$NON-NLS-2$
 				+ SimulatorMessages.PropertyDescriptor_Label_Text
 				+ "=" + getLabelContents(); //$NON-NLS-1$ 
-	}
-
-	@Override
-	public void changeStatus() {
-		firePropertyChange("changeStatus", null, null);		
 	}
 
 }

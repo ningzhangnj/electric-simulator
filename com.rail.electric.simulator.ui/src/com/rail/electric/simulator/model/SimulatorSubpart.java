@@ -85,13 +85,7 @@ abstract public class SimulatorSubpart extends SimulatorElement {
 	public SimulatorGuide getHorizontalGuide() {
 		return horizontalGuide;
 	}
-
-	public Image getIcon() {
-		return getIconImage();
-	}
-
-	abstract public Image getIconImage();
-
+	
 	public String getID() {
 		return id;
 	}
@@ -229,7 +223,5 @@ abstract public class SimulatorSubpart extends SimulatorElement {
 	public void setVerticalGuide(SimulatorGuide vGuide) {
 		verticalGuide = vGuide;
 	}
-	
-	abstract public void changeStatus();
-
+		
 }

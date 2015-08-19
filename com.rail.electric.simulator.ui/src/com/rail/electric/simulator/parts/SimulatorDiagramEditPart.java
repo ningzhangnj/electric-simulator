@@ -41,6 +41,8 @@ import org.eclipse.swt.accessibility.AccessibleEvent;
 import com.rail.electric.simulator.SimulatorMessages;
 import com.rail.electric.simulator.model.SimulatorDiagram;
 import com.rail.electric.simulator.policies.SimulatorXYLayoutEditPolicy;
+import com.rail.electric.simulator.properties.IPropertySectionPart;
+import com.rail.electric.simulator.properties.IdPropertySectionPart;
 
 /**
  * Holds all other LogicEditParts under this. It is activated by
@@ -190,6 +192,11 @@ public class SimulatorDiagramEditPart extends SimulatorContainerEditPart impleme
 			cLayer.setConnectionRouter(new ShortestPathConnectionRouter(
 					getFigure()));
 		Animation.run(400);
+	}
+	
+	@Override
+	public List<IPropertySectionPart> getPropertySections() {
+		return null;
 	}
 
 }

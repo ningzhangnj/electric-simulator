@@ -3,9 +3,6 @@ package com.rail.electric.simulator.model;
 import java.io.IOException;
 
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.swt.graphics.Image;
-
-import com.rail.electric.simulator.SimulatorMessages;
 
 public class SimulatorGround extends SimulatorSubpart {
 
@@ -16,19 +13,11 @@ public class SimulatorGround extends SimulatorSubpart {
 
 	static final long serialVersionUID = 1;
 
-	
-	private static Image SIMULATOR_GROUND_ICON = createImage(LED.class,
-			"icons/ground_on_18X24.png"); //$NON-NLS-1$
-
 	private static int count;
 
 	public SimulatorGround() {
 		super();
 		size.width = DEFAULT_WIDTH;
-	}
-
-	public Image getIconImage() {
-		return SIMULATOR_GROUND_ICON;
 	}
 
 	protected String getNewID() {
@@ -48,10 +37,4 @@ public class SimulatorGround extends SimulatorSubpart {
 		d.height = -1;
 		super.setSize(d);
 	}
-
-	@Override
-	public void changeStatus() {
-		firePropertyChange("changeStatus", null, null);		
-	}
-
 }

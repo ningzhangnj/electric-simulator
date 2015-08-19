@@ -1,6 +1,5 @@
 package com.rail.electric.simulator.properties;
 
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.widgets.Composite;
 
 public interface IPropertySectionPart {
@@ -12,7 +11,7 @@ public interface IPropertySectionPart {
      */
     void createControl(Composite parent);
 
-    void dispose();
+    /*void dispose();
 
     void refresh();
 
@@ -20,6 +19,6 @@ public interface IPropertySectionPart {
 
     void setSelection(ISelection selection);
 
-    String getTitle();
+    String getTitle();*/
 
 }

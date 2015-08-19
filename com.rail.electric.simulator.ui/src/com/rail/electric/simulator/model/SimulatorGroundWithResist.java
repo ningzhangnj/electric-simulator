@@ -3,7 +3,6 @@ package com.rail.electric.simulator.model;
 import java.io.IOException;
 
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.swt.graphics.Image;
 
 import com.rail.electric.simulator.SimulatorMessages;
 
@@ -18,9 +17,6 @@ public class SimulatorGroundWithResist extends SimulatorSubpart {
 
 	private String text = SimulatorMessages.SimulatorPlugin_Tool_CreationTool_LogicLabel;
 
-	private static Image SIMULATOR_GROUND_WITH_RESIST_ICON = createImage(LED.class,
-			"icons/ground_resist_12X24.png"); //$NON-NLS-1$
-
 	private static int count;
 
 	public SimulatorGroundWithResist() {
@@ -30,10 +26,6 @@ public class SimulatorGroundWithResist extends SimulatorSubpart {
 
 	public String getLabelContents() {
 		return text;
-	}
-
-	public Image getIconImage() {
-		return SIMULATOR_GROUND_WITH_RESIST_ICON;
 	}
 
 	protected String getNewID() {
@@ -64,11 +56,6 @@ public class SimulatorGroundWithResist extends SimulatorSubpart {
 				+ " #" + getID() + " " //$NON-NLS-1$ //$NON-NLS-2$
 				+ SimulatorMessages.PropertyDescriptor_Label_Text
 				+ "=" + getLabelContents(); //$NON-NLS-1$ 
-	}
-
-	@Override
-	public void changeStatus() {
-		firePropertyChange("changeStatus", null, null);		
 	}
 
 }

@@ -18,9 +18,6 @@ public class SimulatorMainSwitch extends SimulatorSubpart {
 
 	private String text = SimulatorMessages.SimulatorPlugin_Tool_CreationTool_LogicLabel;
 
-	private static Image SIMULATOR_MAIN_SWITCH_ICON = createImage(LED.class,
-			"icons/main_switch_off_24X24.png"); //$NON-NLS-1$
-
 	private static int count;
 
 	public SimulatorMainSwitch() {
@@ -30,10 +27,6 @@ public class SimulatorMainSwitch extends SimulatorSubpart {
 
 	public String getLabelContents() {
 		return text;
-	}
-
-	public Image getIconImage() {
-		return SIMULATOR_MAIN_SWITCH_ICON;
 	}
 
 	protected String getNewID() {
@@ -65,10 +58,6 @@ public class SimulatorMainSwitch extends SimulatorSubpart {
 				+ SimulatorMessages.PropertyDescriptor_Label_Text
 				+ "=" + getLabelContents(); //$NON-NLS-1$ 
 	}
-
-	@Override
-	public void changeStatus() {
-		firePropertyChange("changeStatus", null, null);		
-	}
+	
 
 }

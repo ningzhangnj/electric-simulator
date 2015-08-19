@@ -3,7 +3,6 @@ package com.rail.electric.simulator.model;
 import java.io.IOException;
 
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.swt.graphics.Image;
 
 import com.rail.electric.simulator.SimulatorMessages;
 
@@ -17,10 +16,7 @@ public class SimulatorComplexCircuit extends SimulatorSubpart {
 	static final long serialVersionUID = 1;
 
 	private String text = SimulatorMessages.SimulatorPlugin_Tool_CreationTool_LogicLabel;
-
-	private static Image SIMULATOR_COMPLEX_CIRCUIT_ICON = createImage(LED.class,
-			"icons/comp_on_24X24.png"); //$NON-NLS-1$
-
+	
 	private static int count;
 
 	public SimulatorComplexCircuit() {
@@ -30,10 +26,6 @@ public class SimulatorComplexCircuit extends SimulatorSubpart {
 
 	public String getLabelContents() {
 		return text;
-	}
-
-	public Image getIconImage() {
-		return SIMULATOR_COMPLEX_CIRCUIT_ICON;
 	}
 
 	protected String getNewID() {
@@ -64,12 +56,6 @@ public class SimulatorComplexCircuit extends SimulatorSubpart {
 				+ " #" + getID() + " " //$NON-NLS-1$ //$NON-NLS-2$
 				+ SimulatorMessages.PropertyDescriptor_Label_Text
 				+ "=" + getLabelContents(); //$NON-NLS-1$ 
-	}
-
-	@Override
-	public void changeStatus() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
